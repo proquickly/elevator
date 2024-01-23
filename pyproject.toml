@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "elevator"
+version = "0.1.0"
+description = ""
+authors = ["Andy Miles <akmiles@icloud.com>"]
+readme = "README.md"
+packages = [{include = "elevator", from = "src"}]
+
+[tool.poetry.dependencies]
+python = "^3.12"
+pytest = "^7.4.4"
+pytest-cov = "^4.1.0"
+pytest-bdd = "^7.0.1"
+pytest-mock = "^3.12.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

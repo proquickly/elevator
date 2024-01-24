@@ -1,20 +1,35 @@
+import pytest
 from unittest.mock import patch
 import elevator.elevate
 
 
 @patch('elevator.elevate.input', side_effect=[
     'test',
-    'andy'
+    'andy',
+    10,
+    100,
+    600
 ])
 def test_get_model_data(mock_inputs):
     assert elevator.elevate.get_model_data() == {
         'model_name': 'test',
-        'author': 'andy'
+        'author': 'andy',
+        'floors': 10,
+        'width': 100.0,
+        'length': 600.0,
     }
 
 
-def test_get_model_data_bad():
-    pass
+@patch('elevator.elevate.input', side_effect=[
+    'test',
+    'andy',
+    'a',
+    100,
+    600
+])
+def test_get_model_data_bad(mock_inputs):
+    with pytest.raises(ValueError):
+        assert elevator.elevate.get_model_data() is None
 
 
 def test_save_model_data():
